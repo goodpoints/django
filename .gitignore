@@ -1,0 +1,6 @@
+*.pyc
+*.egg-info
+goodpoints/settings/local.py
+goodpoints/settings/local/*
+docs/_build
+.elasticbeanstalk/
