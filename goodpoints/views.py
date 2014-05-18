@@ -17,7 +17,7 @@ from django.utils.http import urlquote
 import stripe
 import boto
 from boto.s3.key import Key
-
+import models
 
 def home(request):
 
