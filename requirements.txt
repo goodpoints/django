@@ -6,7 +6,7 @@
 Django==1.5
 South==0.8.4
 boto==2.25.0
-mysql-python
+MySQL-python=1.2.3
 django-ses==0.4.1
 django-social-auth==0.7.28
 django-storages==1.1.8
