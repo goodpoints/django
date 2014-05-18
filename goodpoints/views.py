@@ -14,7 +14,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.db.models import Q
 from django.utils.http import urlquote
 
-import stripe
+import libs.stripe
 import boto
 from boto.s3.key import Key
 
