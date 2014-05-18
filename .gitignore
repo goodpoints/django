@@ -4,5 +4,4 @@ goodpoints/settings/local.py
 goodpoints/settings/local/*
 docs/_build
 dev.db
-.elasticbeanstalk/
 .DS_Store
