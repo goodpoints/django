@@ -1,15 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{% block head_title %}{% endblock %}</title>
+
     <meta charset="utf-8">
+
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css?1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+      
+    {% block extra_css %}
+    {% endblock %}
+
 </head>
 <body>
 
-<div id="container">
-    {% block content %}
+    <nav class="navbar navbar-default" role="navigation">
+
+        <div class="container">
+
+            <div class="navbar-header">
+                
+                <a class="navbar-brand" href="/">GoodPoints</a>
+
+            </div>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+                <ul class="nav navbar-nav">
+
+                    <li><a href="/about"><strong>About</strong><span> Us</span></a></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    {% block jumbotron %}
     {% endblock %}
-</div>
+
+    <div class="page">
+    {% block page %}
+    {% endblock %}
+    </div>
+
+    <footer class="container">
+        <p>&copy; 2014 GoodPoints&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/privacy">Privacy</a> &middot; <a href="/tou">Terms of Use</a></p>
+    </footer>
+
+    {% block modals %}{% endblock %}  
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
+    <script src="{{ STATIC_URL }}js/main.js?1"></script>
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51b5379c6ba6d63e"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script>
+    // set stripe api key
+    Stripe.setPublishableKey('{{ STRIPE_PUB_KEY }}');
+
+    {% if user %}reAllocate.user = "{{ user.username }}";{% endif %}
+
+    {# {% if not request.user.is_staff %} #}
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-38925689-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    {# {% endif %} #}
+    </script>
+
+    {% block bottomscript %}
+    {% endblock %}
 
 </body>
 </html>

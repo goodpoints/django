@@ -1,16 +1,15 @@
-"""Base settings shared by all environments"""
-# Import global settings to make it easier to extend settings.
+"""
+Base settings shared by all environments
+"""
+# import global settings to make it easier to extend settings
 from django.conf.global_settings import *   # pylint: disable=W0614,W0401
-
-#==============================================================================
-# Generic Django project settings
-#==============================================================================
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 SITE_ID = 1
-# Local time zone for this installation. Choices can be found here:
+
+# local time zone for this installation
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 TIME_ZONE = 'UTC'
 USE_TZ = True
@@ -21,11 +20,11 @@ LANGUAGES = (
     ('en', 'English'),
 )
 
-# Make this unique, and don't share it with anybody.
+# make this unique, and don't share it with anybody
 SECRET_KEY = '3u0cgfq!i-!9#ubru*pi$y72*ey5_+i8_)byjn&he_&(r&bvt5'
 
 INSTALLED_APPS = (
-     'goodpoints.apps.',
+    #'goodpoints.apps.',
     'south',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,10 +36,6 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 )
 
-#==============================================================================
-# Calculation of directories relative to the project module location
-#==============================================================================
-
 import os
 import sys
 import goodpoints as project_module
@@ -49,43 +44,23 @@ PROJECT_DIR = os.path.dirname(os.path.realpath(project_module.__file__))
 
 PYTHON_BIN = os.path.dirname(sys.executable)
 ve_path = os.path.dirname(os.path.dirname(os.path.dirname(PROJECT_DIR)))
-# Assume that the presence of 'activate_this.py' in the python bin/
-# directory means that we're running in a virtual environment.
+
+# 'activate_this.py' in the python bin/ means that we're running in a virtual environment
 if os.path.exists(os.path.join(PYTHON_BIN, 'activate_this.py')):
-    # We're running with a virtualenv python executable.
     VAR_ROOT = os.path.join(os.path.dirname(PYTHON_BIN), 'var')
-elif ve_path and os.path.exists(os.path.join(ve_path, 'bin',
-        'activate_this.py')):
-    # We're running in [virtualenv_root]/src/[project_name].
+elif ve_path and os.path.exists(os.path.join(ve_path, 'bin', 'activate_this.py')):
     VAR_ROOT = os.path.join(ve_path, 'var')
 else:
-    # Set the variable root to a path in the project which is
-    # ignored by the repository.
     VAR_ROOT = os.path.join(PROJECT_DIR, 'var')
 
 if not os.path.exists(VAR_ROOT):
     os.mkdir(VAR_ROOT)
-
-#==============================================================================
-# Project URLS and media settings
-#==============================================================================
 
 ROOT_URLCONF = 'goodpoints.urls'
 
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 LOGIN_REDIRECT_URL = '/'
-
-DATABASES = {
-   'default': {
-      'ENGINE': 'django.db.backends.mysql',
-      'NAME': os.environ['RDS_DB_NAME'],
-      'USER': os.environ['RDS_USERNAME'],
-      'PASSWORD': os.environ['RDS_PASSWORD'],
-      'HOST': os.environ['RDS_HOSTNAME'],
-      'PORT': os.environ['RDS_PORT'],
-   }
-}
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/uploads/'
@@ -97,10 +72,6 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
 
-#==============================================================================
-# Templates
-#==============================================================================
-
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
@@ -108,24 +79,8 @@ TEMPLATE_DIRS = (
 TEMPLATE_CONTEXT_PROCESSORS += (
 )
 
-#==============================================================================
-# Middleware
-#==============================================================================
-
 MIDDLEWARE_CLASSES += (
 )
 
-#==============================================================================
-# Auth / security
-#==============================================================================
-
 AUTHENTICATION_BACKENDS += (
 )
-
-#==============================================================================
-# Miscellaneous project settings
-#==============================================================================
-
-#==============================================================================
-# Third party app settings
-#==============================================================================
