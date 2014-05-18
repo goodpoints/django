@@ -24,7 +24,7 @@ class UserProfile(models.Model):
 	state = models.CharField(max_length=255, null=True)
 	zipcode = models.CharField(max_length=255, null=True)
 	avatar = models.CharField(max_length=255, null=True)
-	organization = models.ForeignKey(Organization)
+	organization = models.ForeignKey(Organization, null=True)
 
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)

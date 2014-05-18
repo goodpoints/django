@@ -24,7 +24,7 @@ LANGUAGES = (
 SECRET_KEY = '3u0cgfq!i-!9#ubru*pi$y72*ey5_+i8_)byjn&he_&(r&bvt5'
 
 INSTALLED_APPS = (
-    #'goodpoints.apps.',
+    'goodpoints',
     'south',
     'django.contrib.auth',
     'django.contrib.contenttypes',
