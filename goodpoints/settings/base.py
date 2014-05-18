@@ -40,19 +40,19 @@ import os
 import sys
 import goodpoints as project_module
 
-PROJECT_DIR = os.path.dirname(os.path.realpath(project_module.__file__))
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "libs"))
 
+PROJECT_DIR = os.path.dirname(os.path.realpath(project_module.__file__))
 PYTHON_BIN = os.path.dirname(sys.executable)
-ve_path = os.path.dirname(os.path.dirname(os.path.dirname(PROJECT_DIR)))
 
 # 'activate_this.py' in the python bin/ means that we're running in a virtual environment
+ve_path = os.path.dirname(os.path.dirname(os.path.dirname(PROJECT_DIR)))
 if os.path.exists(os.path.join(PYTHON_BIN, 'activate_this.py')):
     VAR_ROOT = os.path.join(os.path.dirname(PYTHON_BIN), 'var')
 elif ve_path and os.path.exists(os.path.join(ve_path, 'bin', 'activate_this.py')):
     VAR_ROOT = os.path.join(ve_path, 'var')
 else:
     VAR_ROOT = os.path.join(PROJECT_DIR, 'var')
-
 if not os.path.exists(VAR_ROOT):
     os.mkdir(VAR_ROOT)
 
