@@ -40,10 +40,10 @@ import os
 import sys
 import goodpoints as project_module
 
-sys.path.insert(0, os.path.join(PROJECT_ROOT, "libs"))
-
 PROJECT_DIR = os.path.dirname(os.path.realpath(project_module.__file__))
 PYTHON_BIN = os.path.dirname(sys.executable)
+
+sys.path.insert(0, os.path.join(PROJECT_DIR, "libs"))
 
 # 'activate_this.py' in the python bin/ means that we're running in a virtual environment
 ve_path = os.path.dirname(os.path.dirname(os.path.dirname(PROJECT_DIR)))
